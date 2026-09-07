@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-primary-fixed": "#331200", "surface-tint": "#9b4500", "surface-container": "#e5eeff", "tertiary-container": "#0075b1", "on-secondary": "#ffffff", "surface-container-high": "#dce9ff", "surface-dim": "#cbdbf5", "on-tertiary-fixed-variant": "#004b73", "error": "#ba1a1a", "secondary": "#565e74", "on-background": "#0b1c30", "on-surface": "#0b1c30", "inverse-primary": "#ffb68e", "primary-fixed": "#ffdbca", "background": "#f8f9ff", "on-tertiary-container": "#ecf4ff", "surface-container-highest": "#d3e4fe", "on-surface-variant": "#564338", "error-container": "#ffdad6", "surface-container-lowest": "#ffffff", "secondary-fixed-dim": "#bec6e0", "tertiary-fixed-dim": "#93ccff", "secondary-container": "#dae2fd", "on-primary": "#ffffff", "inverse-surface": "#213145", "surface-container-low": "#eff4ff", "outline-variant": "#ddc1b3", "on-secondary-fixed": "#131b2e", "surface-bright": "#f8f9ff", "on-error": "#ffffff", "primary": "#903f00", "on-primary-fixed-variant": "#763300", "on-secondary-container": "#5c647a", "on-tertiary": "#ffffff", "tertiary": "#005b8c", "primary-container": "#b45309", "primary-fixed-dim": "#ffb68e", "outline": "#897267", "surface": "#f8f9ff", "on-secondary-fixed-variant": "#3f465c", "tertiary-fixed": "#cce5ff", "inverse-on-surface": "#eaf1ff", "on-primary-container": "#fff1eb", "on-error-container": "#93000a", "surface-variant": "#d3e4fe", "on-tertiary-fixed": "#001d31", "secondary-fixed": "#dae2fd" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-2xs": "0.125rem", "gutter-expanded": "1.5rem", "gutter-normal": "1rem", "space-lg": "1.5rem", "space-xs": "0.25rem", "space-2xl": "3rem", "space-xl": "2rem", "gutter-dense": "0.5rem", "margin-screen": "1.5rem", "space-base": "1rem", "space-md": "0.75rem", "space-sm": "0.5rem" }, "fontFamily": { "body-sm": [ "Inter" ], "display-lg": [ "Inter" ], "telemetry-lg": [ "JetBrains Mono" ], "headline-lg": [ "Inter" ], "body-md": [ "Inter" ], "headline-sm": [ "Inter" ], "headline-md": [ "Inter" ], "label-caps": [ "JetBrains Mono" ], "display-lg-mobile": [ "Inter" ], "telemetry-md": [ "JetBrains Mono" ], "telemetry-sm": [ "JetBrains Mono" ], "body-lg": [ "Inter" ] }, "fontSize": { "body-sm": [ "12px", { "lineHeight": "16px", "fontWeight": "400" } ], "display-lg": [ "36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" } ], "telemetry-lg": [ "20px", { "lineHeight": "28px", "letterSpacing": "-0.03em", "fontWeight": "600" } ], "headline-lg": [ "24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" } ], "body-md": [ "14px", { "lineHeight": "20px", "fontWeight": "400" } ], "headline-sm": [ "16px", { "lineHeight": "24px", "fontWeight": "600" } ], "headline-md": [ "20px", { "lineHeight": "28px", "fontWeight": "600" } ], "label-caps": [ "10px", { "lineHeight": "12px", "letterSpacing": "0.08em", "fontWeight": "700" } ], "display-lg-mobile": [ "28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700" } ], "telemetry-md": [ "14px", { "lineHeight": "20px", "letterSpacing": "-0.02em", "fontWeight": "500" } ], "telemetry-sm": [ "11px", { "lineHeight": "14px", "letterSpacing": "0.02em", "fontWeight": "500" } ], "body-lg": [ "16px", { "lineHeight": "24px", "fontWeight": "400" } ] } } } };</script></head><body class="bg-surface text-on-surface font-body-md text-body-md"><aside class="fixed left-0 top-0 h-full w-72 bg-inverse-surface text-inverse-on-surface z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.24)]"><div class="flex flex-col"><div class="h-16 px-space-base flex items-center gap-space-sm bg-inverse-surface"><img alt="MOIL AI-MINE Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1U8Vyz8pA43aLV4_MuTzo1_9WVKaCy7VSt9c1MKGf_x1IO4-VF7DYdiY6nMzhONzcCfwd_7TgpuvinJsQXvaGO_d078NuOq-3ae69D_JXbjS7IKsd9sjEUHGPMOL8lHo93nAeACdtdIYySZB0-ywc9VVzpnCACTY7i5_QGwzvuoohN1B-RnV2uSnR18OquEeNJNlgbFszYAzsqOIIB5vUZdxI1jZ-hV2pPLbQWHpJL8_fHVIFrMX8IqSna0"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-surface-container-lowest font-bold leading-tight">MOIL AI-MINE</span><span class="font-label-caps text-label-caps text-secondary-fixed-dim uppercase tracking-wider">Manganese Intelligence</span></div></div><div class="px-space-base py-space-xs"><div class="font-label-caps text-label-caps text-secondary-fixed-dim px-space-xs py-space-2xs uppercase tracking-widest">Operational Telemetry</div></div><nav class="flex flex-col gap-space-2xs px-space-sm overflow-y-auto" data-active-classes="bg-primary-container text-on-primary-container font-bold rounded-lg"><a class="flex items-center justify-between px-space-sm py-space-xs rounded-lg text-secondary-fixed-dim hover:bg-secondary/30 hover:text-surface-container-lowest transition-colors" data-path="command-center" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">grid_view</span><span class="font-body-md text-body-md">Command Center</span></div></a><a class="flex items-center justify-between px-space-sm py-space-xs rounded-lg text-secondary-fixed-dim hover:bg-secondary/30 hover:text-surface-container-lowest transition-colors" data-path="mine-sites" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">landscape</span><span class="font-body-md text-body-md">Mine Sites</span></div></a><a aria-current="page" class="flex items-center justify-between px-space-sm py-space-xs transition-colors bg-primary-container text-on-primary-container font-bold rounded-lg" data-path="reserve-intelligence" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">layers</span><span class="font-body-md text-body-md">Reserve Intelligence</span></div></a><a class="flex items-center justify-between px-space-sm py-space-xs rounded-lg text-secondary-fixed-dim hover:bg-secondary/30 hover:text-surface-container-lowest transition-colors" data-path="production-forecast" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">trending_up</span><span class="font-body-md text-body-md">Production Forecast</span></div></a><a class="flex items-center justify-between px-space-sm py-space-xs rounded-lg text-secondary-fixed-dim hover:bg-secondary/30 hover:text-surface-container-lowest transition-colors" data-path="equipment-health" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">build</span><span class="font-body-md text-body-md">Equipment Health</span></div></a><a class="flex items-center justify-between px-space-sm py-space-xs rounded-lg text-secondary-fixed-dim hover:bg-secondary/30 hover:text-surface-container-lowest transition-colors" data-path="satellite-weather" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">satellite_alt</span><span class="font-body-md text-body-md">Satellite &amp; Weather</span></div></a><a class="flex items-center justify-between px-space-sm py-space-xs rounded-lg text-secondary-fixed-dim hover:bg-secondary/30 hover:text-surface-container-lowest transition-colors" data-path="risk-shortfall" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">warning</span><span class="font-body-md text-body-md">Risk &amp; Shortfall</span></div><span class="px-1.5 py-0.5 rounded-full bg-error text-on-error font-label-caps text-label-caps">1</span></a><a class="flex items-center justify-between px-space-sm py-space-xs rounded-lg text-secondary-fixed-dim hover:bg-secondary/30 hover:text-surface-container-lowest transition-colors" data-path="ai-recommendations" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">neurology</span><span class="font-body-md text-body-md">AI Recommendations</span></div><span class="px-1.5 py-0.5 rounded-full bg-tertiary-container text-on-tertiary-container font-label-caps text-label-caps">4</span></a><a class="flex items-center justify-between px-space-sm py-space-xs rounded-lg text-secondary-fixed-dim hover:bg-secondary/30 hover:text-surface-container-lowest transition-colors" data-path="what-if-simulation" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">tune</span><span class="font-body-md text-body-md">What-If Simulation</span></div></a><a class="flex items-center justify-between px-space-sm py-space-xs rounded-lg text-secondary-fixed-dim hover:bg-secondary/30 hover:text-surface-container-lowest transition-colors" data-path="reports-audit" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">history_edu</span><span class="font-body-md text-body-md">Reports &amp; Audit</span></div></a></nav></div><div class="p-space-base m-space-sm rounded-xl bg-secondary/20 shadow-[0_1px_4px_rgba(0,0,0,0.16)] flex flex-col gap-space-xs"><div class="font-label-caps text-label-caps text-secondary-fixed-dim uppercase tracking-wider">Telemetry Health</div><div class="flex items-center justify-between font-telemetry-sm text-telemetry-sm"><span class="text-secondary-fixed-dim">Pipeline Health</span><span class="font-bold text-surface-container-lowest">99.4%</span></div><div class="w-full bg-secondary/40 rounded-full h-1.5 overflow-hidden"><div class="bg-tertiary-fixed h-full rounded-full w-[99.4%]"></div></div><div class="flex items-center justify-between font-telemetry-sm text-telemetry-sm pt-space-2xs"><span class="text-secondary-fixed-dim">Active Sites</span><span class="font-bold text-surface-container-lowest">10 Mines</span></div><div class="flex items-center justify-between font-telemetry-sm text-telemetry-sm"><span class="text-secondary-fixed-dim">Mn Model Conf.</span><span class="font-bold text-primary-fixed">94%</span></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 px-space-lg flex items-center justify-between gap-space-base"><div class="flex-1 max-w-xl flex items-center gap-space-sm px-space-md py-space-xs rounded-lg bg-surface-container-low shadow-[0_1px_3px_rgba(15,23,42,0.06)]"><span class="material-symbols-outlined text-outline text-[18px]">search</span><input class="w-full bg-transparent border-none outline-none font-body-sm text-body-sm text-on-surface placeholder:text-outline" placeholder="Search mine, equipment, drill hole BH-..., production period, or AI model run..." type="text"/><span class="font-label-caps text-label-caps px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface-variant">⌘K</span></div><div class="flex items-center gap-space-base"><div class="hidden xl:flex items-center gap-space-xs"><div class="flex items-center gap-1.5 px-space-sm py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-telemetry-sm text-telemetry-sm"><span class="w-2 h-2 rounded-full bg-tertiary-container animate-pulse"></span><span>AI Models: Active (v2.4)</span></div><div class="flex items-center gap-1.5 px-space-sm py-1 rounded-full bg-surface-container-high text-on-surface-variant font-telemetry-sm text-telemetry-sm"><span class="material-symbols-outlined text-[14px]">sync</span><span>Syncing (12 mins ago)</span></div></div><div class="hidden 2xl:flex flex-col text-right"><span class="font-label-caps text-label-caps text-outline uppercase">Compliance</span><span class="font-body-sm text-body-sm text-on-surface-variant">SIH Prototype • Decision-Support Only</span></div><button class="relative p-space-xs rounded-lg hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors"><span class="material-symbols-outlined">notifications</span><span class="absolute top-1 right-1 flex h-2.5 w-2.5"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-error opacity-75"></span><span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-error"></span></span></button><div class="flex items-center gap-space-sm pl-space-xs"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgN1POFvlsJRKbYRo0cdXEMurXwDEXcy27da95TnOEyiDFllP4ZOgsQvI9WWQwqLV_nOpOlOzeO_dDc9VzsYlFn5Frm5nqJR00ZqxEa7RLa_JfsUq8v8k7nnBdjaeaZErS9DZlFbpwsLi4eDlGsHwww7M2vzERA9MIVUBrtRetuK73aMaHZQJCseZdVWmJb7Out0xZkEtPXyp6Y2J_6W3uV0lLyAVJUhlOQtPQ2wEFmrNPLtiKCQaLFg"/><div class="flex flex-col"><span class="font-headline-sm text-body-md font-bold text-on-surface leading-tight">Rajesh Verma</span><span class="font-body-sm text-body-sm text-on-surface-variant">Dir. Mine Planning (Balaghat)</span></div></div></div></header><main class="w-full pt-16 bg-surface px-space-lg py-space-base min-h-screen"><div class="flex flex-col w-full gap-space-lg pb-space-2xl">
+<!-- Header & Telemetry Metadata Banner -->
+<div class="flex flex-col xl:flex-row xl:items-end justify-between gap-space-base pb-space-xs">
+<div class="flex flex-col gap-space-2xs">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-caps text-label-caps bg-primary-container/15 text-primary-container px-space-xs py-0.5 rounded uppercase tracking-wider font-semibold">Geo-Telemetry Engine v2.4</span>
+<span class="font-label-caps text-label-caps text-secondary-fixed-dim uppercase tracking-wider">•</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">UNFC-111 Compliant Modeling</span>
+</div>
+<h1 class="font-display-lg text-display-lg text-on-surface tracking-tight font-bold">Reserve &amp; Geological Intelligence</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-3xl">Sub-surface manganese deposit estimation, borehole 3D analytics &amp; geostatistical ML models (Balaghat-Tirodi-Dongri Belt).</p>
+</div>
+<!-- Live Telemetry Status Badges -->
+<div class="flex items-center gap-space-sm flex-wrap">
+<div class="flex items-center gap-space-xs px-space-md py-space-xs rounded-lg bg-surface-container-low shadow-sm">
+<span class="w-2 h-2 rounded-full bg-primary-container animate-ping"></span>
+<span class="font-telemetry-sm text-telemetry-sm text-on-surface">3D Kriging Sync</span>
+<span class="font-telemetry-sm text-telemetry-sm text-secondary font-semibold">108 FPS / Edge</span>
+</div>
+<div class="flex items-center gap-space-xs px-space-md py-space-xs rounded-lg bg-surface-container-low shadow-sm">
+<span class="material-symbols-outlined text-primary text-[18px]">satellite_alt</span>
+<span class="font-telemetry-sm text-telemetry-sm text-on-surface">InSAR Strain</span>
+<span class="font-telemetry-sm text-telemetry-sm text-primary-container font-semibold">±1.2mm/yr</span>
+</div>
+<button class="flex items-center gap-space-xs px-space-md py-space-xs bg-primary-container text-on-primary-container rounded-lg shadow-sm hover:opacity-95 transition-all">
+<span class="material-symbols-outlined text-[16px]">file_download</span>
+<span class="font-headline-sm text-headline-sm">Export JORC/UNFC</span>
+</button>
+</div>
+</div>
+<!-- Top KPI Bar: 5 Diagnostic Stat Tiles -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-space-base">
+<!-- KPI 1 -->
+<div class="p-space-base rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between relative overflow-hidden group">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-label-caps text-secondary uppercase tracking-wider">Total Geological Resource</span>
+<span class="material-symbols-outlined text-outline text-[18px]">layers</span>
+</div>
+<div class="mt-space-sm flex items-baseline gap-space-xs">
+<span class="font-telemetry-lg text-telemetry-lg text-on-surface font-bold">58.4</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant font-semibold">MT</span>
+</div>
+<div class="mt-space-2xs flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant">
+<span>Inferred + Indicated</span>
+<span class="font-telemetry-sm text-telemetry-sm text-primary-container font-medium">Class A-1</span>
+</div>
+<div class="w-full bg-surface-container-high h-1 rounded-full mt-space-sm overflow-hidden">
+<div class="bg-primary-container h-full w-[82%] rounded-full"></div>
+</div>
+</div>
+<!-- KPI 2 -->
+<div class="p-space-base rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-label-caps text-secondary uppercase tracking-wider">Recoverable Reserve</span>
+<span class="material-symbols-outlined text-primary text-[18px]">account_balance_wallet</span>
+</div>
+<div class="mt-space-sm flex items-baseline gap-space-xs">
+<span class="font-telemetry-lg text-telemetry-lg text-on-surface font-bold">42.8</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant font-semibold">MT</span>
+</div>
+<div class="mt-space-2xs flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant">
+<span>High Proved Confidence</span>
+<span class="font-telemetry-sm text-telemetry-sm text-on-surface font-semibold">73.2% Factor</span>
+</div>
+<div class="w-full bg-surface-container-high h-1 rounded-full mt-space-sm overflow-hidden">
+<div class="bg-primary h-full w-[73%] rounded-full"></div>
+</div>
+</div>
+<!-- KPI 3 -->
+<div class="p-space-base rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-label-caps text-secondary uppercase tracking-wider">AI Model Confidence</span>
+<span class="material-symbols-outlined text-tertiary text-[18px]">psychology</span>
+</div>
+<div class="mt-space-sm flex items-baseline gap-space-xs">
+<span class="font-telemetry-lg text-telemetry-lg text-on-surface font-bold">91.4%</span>
+<span class="font-telemetry-sm text-telemetry-sm text-tertiary-container font-semibold">±1.8% dev</span>
+</div>
+<div class="mt-space-2xs text-body-sm font-body-sm text-on-surface-variant truncate">
+        Kriging + Deep Neural Net v2.4
+      </div>
+<div class="w-full bg-surface-container-high h-1 rounded-full mt-space-sm overflow-hidden">
+<div class="bg-tertiary-container h-full w-[91.4%] rounded-full"></div>
+</div>
+</div>
+<!-- KPI 4 -->
+<div class="p-space-base rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-label-caps text-secondary uppercase tracking-wider">Net Reserve Delta</span>
+<span class="material-symbols-outlined text-primary-container text-[18px]">trending_up</span>
+</div>
+<div class="mt-space-sm flex items-baseline gap-space-xs">
+<span class="font-telemetry-lg text-telemetry-lg text-on-primary-fixed font-bold">+4.2%</span>
+<span class="font-label-caps text-label-caps text-primary-container font-bold">+1.7 MT</span>
+</div>
+<div class="mt-space-2xs text-body-sm font-body-sm text-on-surface-variant truncate">
+        Q2 Drill-hole reinterpretation
+      </div>
+<div class="w-full bg-surface-container-high h-1 rounded-full mt-space-sm overflow-hidden">
+<div class="bg-primary-fixed-dim h-full w-[64%] rounded-full"></div>
+</div>
+</div>
+<!-- KPI 5 -->
+<div class="p-space-base rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-label-caps text-secondary uppercase tracking-wider">Average Mn Grade</span>
+<span class="material-symbols-outlined text-outline text-[18px]">water_drop</span>
+</div>
+<div class="mt-space-sm flex items-baseline gap-space-xs">
+<span class="font-telemetry-lg text-telemetry-lg text-on-surface font-bold">38.6%</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant font-semibold">Mn Content</span>
+</div>
+<div class="mt-space-2xs flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant">
+<span>Pyrolusite/Braunite</span>
+<span class="font-telemetry-sm text-telemetry-sm text-on-surface font-bold">High Grade</span>
+</div>
+<div class="w-full bg-surface-container-high h-1 rounded-full mt-space-sm overflow-hidden">
+<div class="bg-surface-tint h-full w-[85%] rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- SECTION 1: Sub-Surface Strata & Geological Cross-Section -->
+<div class="grid grid-cols-1 2xl:grid-cols-12 gap-space-base">
+<!-- Cross Section Graphic Viewport (8 Cols) -->
+<div class="2xl:col-span-8 bg-surface-container-lowest rounded-xl shadow-sm p-space-base flex flex-col gap-space-base relative">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[20px]">broken_image</span>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold">Geological Cross-Section A-A'</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Strike 042° NE-SW • Balaghat Deep Horizon • Vertical Exaggeration 1.5x</p>
+</div>
+</div>
+<!-- Legend Ribbon -->
+<div class="flex items-center gap-space-sm flex-wrap">
+<div class="flex items-center gap-1.5 px-space-xs py-0.5 rounded bg-surface-container-low font-telemetry-sm text-telemetry-sm">
+<span class="w-3 h-3 rounded bg-primary-container"></span>
+<span class="text-on-surface">Observed Core (Drilled)</span>
+</div>
+<div class="flex items-center gap-1.5 px-space-xs py-0.5 rounded bg-surface-container-low font-telemetry-sm text-telemetry-sm">
+<span class="w-3 h-3 rounded bg-primary-fixed border border-dashed border-primary-container"></span>
+<span class="text-on-surface">AI Predicted Seam (±6%)</span>
+</div>
+<div class="flex items-center gap-1.5 px-space-xs py-0.5 rounded bg-surface-container-low font-telemetry-sm text-telemetry-sm">
+<span class="w-3 h-3 rounded bg-secondary-fixed-dim"></span>
+<span class="text-on-surface">Phyllite / Schist</span>
+</div>
+</div>
+</div>
+<!-- Strata SVG Visualization -->
+<div class="w-full bg-surface-container-low rounded-xl p-space-sm relative overflow-hidden">
+<!-- Cross-section Canvas -->
+<svg class="w-full h-auto drop-shadow-sm select-none" viewbox="0 0 960 420" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<!-- Pattern for AI Inferred / Predicted Ore Seam -->
+<pattern height="8" id="aiHatch" patterntransform="rotate(45 0 0)" patternunits="userSpaceOnUse" width="8">
+<line stroke="#b45309" stroke-width="2.5" x1="0" x2="0" y1="0" y2="8"></line>
+<line stroke="#ffb68e" stroke-width="1.5" x1="0" x2="8" y1="0" y2="0"></line>
+</pattern>
+<!-- Grid Line Pattern -->
+<pattern height="40" id="gridY" patternunits="userSpaceOnUse" width="100">
+<line stroke="#dce9ff" stroke-width="1" x1="0" x2="100" y1="0" y2="0"></line>
+</pattern>
+<lineargradient id="skyOverburden" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#eff4ff"></stop>
+<stop offset="100%" stop-color="#dce9ff"></stop>
+</lineargradient>
+<lineargradient id="weatheredBed" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#bec6e0"></stop>
+<stop offset="100%" stop-color="#93a2c4"></stop>
+</lineargradient>
+<lineargradient id="hostSchist" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#565e74"></stop>
+<stop offset="100%" stop-color="#213145"></stop>
+</lineargradient>
+</defs>
+<!-- Elevation Axis Markers -->
+<rect fill="#f8f9ff" height="360" rx="4" width="880" x="50" y="20"></rect>
+<rect fill="url(#gridY)" height="360" rx="4" width="880" x="50" y="20"></rect>
+<!-- Depth Axis Labels (Left) -->
+<text class="font-label-caps" fill="#565e74" font-size="10" text-anchor="end" x="40" y="45">0m (Surface)</text>
+<text class="font-label-caps" fill="#565e74" font-size="10" text-anchor="end" x="40" y="115">-50m</text>
+<text class="font-label-caps" fill="#565e74" font-size="10" text-anchor="end" x="40" y="195">-100m</text>
+<text class="font-label-caps" fill="#565e74" font-size="10" text-anchor="end" x="40" y="275">-150m</text>
+<text class="font-label-caps" fill="#565e74" font-size="10" text-anchor="end" x="40" y="355">-220m</text>
+<!-- Geological Layer 1: Overburden & Lateritic Soil -->
+<path d="M 50,40 C 180,36 320,44 480,42 C 640,40 780,48 930,44 L 930,105 C 760,112 550,98 320,108 C 190,114 90,106 50,110 Z" fill="url(#skyOverburden)"></path>
+<text fill="#564338" font-size="11" font-weight="600" x="75" y="75">Alluvium &amp; Weathered Laterite (0 - 24m)</text>
+<!-- Geological Layer 2: Weathered Phyllite / Mica Schist Upper -->
+<path d="M 50,110 C 190,106 320,108 550,98 C 760,112 930,105 930,105 L 930,195 C 780,185 620,195 440,180 C 260,165 140,185 50,175 Z" fill="url(#weatheredBed)" opacity="0.65"></path>
+<text fill="#213145" font-size="11" font-weight="600" x="75" y="150">Weathered Quartz-Muscovite Schist (Sausar Group)</text>
+<!-- Geological Layer 3: Host Basement Rock (Mansar Formation) -->
+<path d="M 50,175 C 140,185 260,165 440,180 C 620,195 780,185 930,195 L 930,380 L 50,380 Z" fill="url(#hostSchist)" opacity="0.88"></path>
+<text fill="#dae2fd" font-size="11" font-weight="600" x="75" y="355">Mansar Host Formation • Foliated Garnetiferous Bedrock</text>
+<!-- Fault Line F-1 (Tectonic Shear Zone) -->
+<line stroke="#ba1a1a" stroke-dasharray="6,4" stroke-width="2.5" x1="580" x2="490" y1="30" y2="380"></line>
+<text fill="#ba1a1a" font-size="10" font-weight="700" x="590" y="60">Tirodi Fault Trace (Dip 68° NW)</text>
+<!-- ORE SEAM: Observed Body (Solid High Grade Manganese Pyrolusite/Braunite) -->
+<!-- South Limb -->
+<path d="M 120,230 C 210,215 310,225 390,215 L 398,245 C 310,255 210,245 120,260 Z" fill="#903f00" stroke="#763300" stroke-width="1.5"></path>
+<!-- North Main Syncline Fold -->
+<path d="M 485,250 C 530,235 630,220 740,240 L 748,276 C 630,250 530,268 478,284 Z" fill="#b45309" stroke="#763300" stroke-width="1.5"></path>
+<!-- ORE SEAM: AI Predicted Ore Zone (Uncertainty ±6%) -->
+<!-- Deep Extension Down Dip -->
+<path d="M 740,240 C 800,252 860,270 910,295 L 905,335 C 850,310 790,290 748,276 Z" fill="url(#aiHatch)" stroke="#b45309" stroke-dasharray="5,3" stroke-width="2"></path>
+<!-- Fold Underbelly AI Prediction -->
+<path d="M 390,215 C 430,210 460,225 485,250 L 478,284 C 450,260 420,245 398,245 Z" fill="url(#aiHatch)" stroke="#b45309" stroke-dasharray="5,3" stroke-width="2"></path>
+<!-- Ore Callout Labels -->
+<rect fill="#213145" height="24" opacity="0.9" rx="4" width="160" x="200" y="275"></rect>
+<text fill="#ffffff" font-size="10" font-weight="600" text-anchor="middle" x="280" y="291">CONFIRMED SEAM: 38.6% Mn</text>
+<rect fill="#fff1eb" height="24" rx="4" stroke="#b45309" stroke-width="1" width="165" x="760" y="325"></rect>
+<text fill="#903f00" font-size="10" font-weight="700" text-anchor="middle" x="842.5" y="341">AI INFERRED SEAM (±6%)</text>
+<!-- BOREHOLE MARKERS -->
+<!-- BH-1041 -->
+<line stroke="#0b1c30" stroke-width="2" x1="160" x2="160" y1="40" y2="280"></line>
+<circle cx="160" cy="40" fill="#005b8c" r="4"></circle>
+<circle cx="160" cy="245" fill="#b45309" r="5" stroke="#ffffff" stroke-width="1.5"></circle>
+<text class="font-telemetry-sm" fill="#0b1c30" font-size="11" font-weight="700" text-anchor="middle" x="160" y="30">BH-1041</text>
+<text fill="#565e74" font-size="9" text-anchor="middle" x="160" y="298">TD: 160m</text>
+<!-- BH-1042 (SELECTED INTERACTIVE TARGET) -->
+<g class="cursor-pointer" id="bh1042-group">
+<rect fill="#b45309" height="18" rx="3" width="60" x="330" y="16"></rect>
+<text fill="#ffffff" font-size="11" font-weight="700" text-anchor="middle" x="360" y="29">BH-1042</text>
+<line stroke="#b45309" stroke-width="3" x1="360" x2="360" y1="34" y2="320"></line>
+<!-- Ore Intercept Highlight Pulse -->
+<rect fill="#ffb68e" height="42" rx="2" stroke="#903f00" stroke-width="2" width="14" x="353" y="220"></rect>
+<circle cx="360" cy="241" fill="#b45309" r="7" stroke="#ffffff" stroke-width="2">
+<animate attributename="r" dur="2s" repeatcount="indefinite" values="6;8;6"></animate>
+</circle>
+<text fill="#b45309" font-size="10" font-weight="700" text-anchor="middle" x="360" y="336">TD: 184m ★</text>
+</g>
+<!-- BH-1043 -->
+<line stroke="#0b1c30" stroke-width="2" x1="560" x2="560" y1="40" y2="340"></line>
+<circle cx="560" cy="40" fill="#005b8c" r="4"></circle>
+<circle cx="560" cy="265" fill="#b45309" r="5" stroke="#ffffff" stroke-width="1.5"></circle>
+<text class="font-telemetry-sm" fill="#0b1c30" font-size="11" font-weight="700" text-anchor="middle" x="560" y="30">BH-1043</text>
+<text fill="#565e74" font-size="9" text-anchor="middle" x="560" y="356">TD: 205m</text>
+<!-- BH-1044 -->
+<line stroke="#0b1c30" stroke-width="2" x1="780" x2="780" y1="40" y2="370"></line>
+<circle cx="780" cy="40" fill="#005b8c" r="4"></circle>
+<circle cx="780" cy="268" fill="#ffb68e" r="5" stroke="#b45309" stroke-width="1.5"></circle>
+<text class="font-telemetry-sm" fill="#0b1c30" font-size="11" font-weight="700" text-anchor="middle" x="780" y="30">BH-1044</text>
+<text fill="#565e74" font-size="9" text-anchor="middle" x="780" y="386">TD: 220m</text>
+</svg>
+<!-- Dynamic Micro-Badge HUD overlay -->
+<div class="absolute bottom-space-md left-space-md bg-inverse-surface/85 backdrop-blur-md px-space-md py-space-xs rounded-lg text-inverse-on-surface flex items-center gap-space-md shadow-lg border border-surface-container/20">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-tertiary-fixed"></span>
+<span class="font-telemetry-sm text-telemetry-sm text-surface-container-lowest">Lithological Resolution: 0.25m</span>
+</div>
+<span class="text-secondary-fixed-dim">|</span>
+<div class="font-telemetry-sm text-telemetry-sm text-secondary-fixed-dim">
+            Interpolation Algorithm: <span class="text-surface-container-lowest font-medium">3D Ordinary Kriging + Variogram Model</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Drill-Hole Inspector Card: BH-1042 Active (4 Cols) -->
+<div class="2xl:col-span-4 bg-surface-container-lowest rounded-xl shadow-sm p-space-base flex flex-col justify-between">
+<div class="flex flex-col gap-space-md">
+<!-- Inspector Header -->
+<div class="flex items-center justify-between pb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="w-3 h-3 rounded-full bg-primary-container"></span>
+<div>
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">BH-1042</span>
+<span class="font-label-caps text-label-caps px-1.5 py-0.5 rounded bg-surface-container-high text-primary font-bold">ACTIVE SELECTION</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Grid Coord: 21°52'14"N, 79°48'02"E</p>
+</div>
+</div>
+<div class="text-right">
+<span class="font-telemetry-sm text-telemetry-sm text-on-surface-variant block">Assay Logged</span>
+<span class="font-label-caps text-label-caps text-primary-container font-semibold">14-AUG-2024</span>
+</div>
+</div>
+<!-- Spec Grid -->
+<div class="grid grid-cols-2 gap-space-sm">
+<div class="p-space-sm rounded-lg bg-surface-container-low">
+<span class="font-label-caps text-label-caps text-secondary block uppercase">Total Core Depth</span>
+<span class="font-telemetry-lg text-telemetry-lg text-on-surface font-bold">184.0 <span class="text-body-sm font-normal">m</span></span>
+<span class="font-body-sm text-body-sm text-secondary block mt-0.5">Bottom in Schist</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low">
+<span class="font-label-caps text-label-caps text-secondary block uppercase">Manganese Grade</span>
+<span class="font-telemetry-lg text-telemetry-lg text-primary-container font-bold">31.8% <span class="text-body-sm font-normal">Mn</span></span>
+<span class="font-body-sm text-body-sm text-primary font-semibold block mt-0.5">Medium-High Ore</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low">
+<span class="font-label-caps text-label-caps text-secondary block uppercase">True Ore Thickness</span>
+<span class="font-telemetry-lg text-telemetry-lg text-on-surface font-bold">12.4 <span class="text-body-sm font-normal">m</span></span>
+<span class="font-body-sm text-body-sm text-secondary block mt-0.5">From 142.1m to 154.5m</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low">
+<span class="font-label-caps text-label-caps text-secondary block uppercase">Statistical Confidence</span>
+<span class="font-telemetry-lg text-telemetry-lg text-on-surface font-bold">94%</span>
+<span class="font-body-sm text-body-sm text-tertiary font-semibold block mt-0.5">Kriging Variance: 0.04</span>
+</div>
+</div>
+<!-- Lithological Spectrum Bar -->
+<div class="flex flex-col gap-space-xs pt-space-xs">
+<div class="flex justify-between items-center text-body-sm font-body-sm">
+<span class="font-label-caps text-label-caps text-secondary uppercase">Dominant Mineralogy</span>
+<span class="font-telemetry-sm text-telemetry-sm text-on-surface font-medium">Braunite &amp; Pyrolusite</span>
+</div>
+<div class="w-full flex h-3 rounded-full overflow-hidden">
+<div class="bg-primary-container w-[48%]" title="Braunite 48%"></div>
+<div class="bg-primary-fixed-dim w-[28%]" title="Pyrolusite 28%"></div>
+<div class="bg-secondary w-[16%]" title="Quartzite Gangue 16%"></div>
+<div class="bg-surface-dim w-[8%]" title="Psilomelane 8%"></div>
+</div>
+<div class="flex justify-between text-body-sm font-body-sm text-on-surface-variant">
+<span>Core Recovery: <strong class="text-on-surface">96.8%</strong></span>
+<span>RQD (Rock Quality): <strong class="text-on-surface">88%</strong></span>
+</div>
+</div>
+<!-- Geological Notes -->
+<div class="p-space-sm rounded-lg bg-surface-container flex gap-space-sm items-start">
+<span class="material-symbols-outlined text-primary-container text-[18px] mt-0.5">info</span>
+<p class="font-body-sm text-body-sm text-on-surface">
+<strong>Core Petrology Note:</strong> Coarse metallic luster observed between 144.2m and 152.0m. Sharp contact with footwall quartzite; minimal phosphorus contaminant (&lt;0.08% P).
+          </p>
+</div>
+</div>
+<!-- Footer Action & Core Log Attachment -->
+<div class="flex items-center justify-between pt-space-md">
+<button class="flex items-center gap-space-xs px-space-md py-space-xs rounded bg-surface-container-high text-on-surface hover:bg-surface-container transition-colors font-headline-sm text-headline-sm">
+<span class="material-symbols-outlined text-[16px]">photo_library</span>
+<span>Core Box Photos</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-space-xs rounded bg-primary-container text-on-primary-container hover:opacity-95 font-headline-sm text-headline-sm transition-all">
+<span class="material-symbols-outlined text-[16px]">tune</span>
+<span>Re-run Assay Kriging</span>
+</button>
+</div>
+</div>
+</div>
+<!-- SECTION 2: Geospatial Map Viewport & AI ML Pipeline -->
+<div class="grid grid-cols-1 2xl:grid-cols-12 gap-space-base">
+<!-- Geospatial Ore Boundary Plan Map (8 Cols) -->
+<div class="2xl:col-span-8 bg-surface-container-lowest rounded-xl shadow-sm p-space-base flex flex-col gap-space-base">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[20px]">map</span>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold">Geospatial Ore Boundary Plan (Balaghat Pit South)</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">1,284 Mapped Boreholes • 8,420 Chemical Assay Points • UTM Zone 44N</p>
+</div>
+</div>
+<!-- Map Layer Switchers -->
+<div class="flex items-center gap-1.5 flex-wrap">
+<button class="px-space-xs py-1 rounded bg-primary text-on-primary font-telemetry-sm text-telemetry-sm font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check</span> Fault Lines
+          </button>
+<button class="px-space-xs py-1 rounded bg-surface-container-high text-on-surface-variant hover:text-on-surface font-telemetry-sm text-telemetry-sm font-medium">
+            Ore Blocks
+          </button>
+<button class="px-space-xs py-1 rounded bg-primary text-on-primary font-telemetry-sm text-telemetry-sm font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check</span> Isopach Contours
+          </button>
+<button class="px-space-xs py-1 rounded bg-surface-container-high text-on-surface-variant hover:text-on-surface font-telemetry-sm text-telemetry-sm font-medium">
+            AI Extensions
+          </button>
+</div>
+</div>
+<!-- Plan GIS Graphic Viewport -->
+<div class="w-full h-96 rounded-xl bg-surface-container-low relative overflow-hidden flex items-center justify-center">
+<!-- SVG GIS Plan with Isopach Heatmaps and Borehole Arrays -->
+<svg class="w-full h-full object-cover" viewbox="0 0 800 380" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<!-- Radial Ore Deposit Probability High Heat -->
+<radialgradient cx="50%" cy="50%" id="heatHigh" r="50%">
+<stop offset="0%" stop-color="#ba1a1a" stop-opacity="0.85"></stop>
+<stop offset="65%" stop-color="#b45309" stop-opacity="0.65"></stop>
+<stop offset="100%" stop-color="#ffb68e" stop-opacity="0"></stop>
+</radialgradient>
+<!-- Radial Secondary Heat Zone -->
+<radialgradient cx="50%" cy="50%" id="heatMed" r="50%">
+<stop offset="0%" stop-color="#ffb68e" stop-opacity="0.7"></stop>
+<stop offset="60%" stop-color="#bec6e0" stop-opacity="0.4"></stop>
+<stop offset="100%" stop-color="#dce9ff" stop-opacity="0"></stop>
+</radialgradient>
+<!-- Grid Pattern -->
+<pattern height="40" id="gisGrid" patternunits="userSpaceOnUse" width="40">
+<rect fill="none" height="40" stroke="#dce9ff" stroke-width="0.75" width="40"></rect>
+</pattern>
+</defs>
+<!-- Coordinate Grid Background -->
+<rect fill="#f8f9ff" height="380" width="800"></rect>
+<rect fill="url(#gisGrid)" height="380" width="800"></rect>
+<!-- Topographic Contour Lines -->
+<path d="M 50,20 Q 200,90 350,70 T 650,40 T 780,90" fill="none" stroke="#bec6e0" stroke-width="1.5"></path>
+<path d="M 40,80 Q 220,160 400,130 T 700,110 T 790,160" fill="none" stroke="#bec6e0" stroke-width="1.5"></path>
+<path d="M 30,160 Q 180,240 380,210 T 680,180 T 790,240" fill="none" stroke="#bec6e0" stroke-width="1.5"></path>
+<path d="M 20,240 Q 200,320 420,280 T 720,260 T 790,320" fill="none" stroke="#bec6e0" stroke-width="1.5"></path>
+<!-- Major Fault Zones -->
+<path d="M 120,20 L 380,360" stroke="#ba1a1a" stroke-dasharray="8,4" stroke-width="2"></path>
+<text fill="#ba1a1a" font-size="10" font-weight="bold" transform="rotate(52 210,160)" x="210" y="160">North-Boundary Thrust Fault (F-1)</text>
+<path d="M 450,20 L 680,360" stroke="#ba1a1a" stroke-dasharray="6,4" stroke-width="1.5"></path>
+<text fill="#ba1a1a" font-size="10" font-weight="bold" transform="rotate(54 540,160)" x="540" y="160">Secondary Splay Fault (F-2)</text>
+<!-- Heatmap Blobs for Ore Probability -->
+<!-- Ore Body A (Main High-Grade Core) -->
+<ellipse cx="380" cy="190" fill="url(#heatHigh)" rx="140" ry="85" transform="rotate(-15 380 190)"></ellipse>
+<!-- Ore Body B (East Pod Extension) -->
+<ellipse cx="600" cy="220" fill="url(#heatMed)" rx="90" ry="60" transform="rotate(10 600 220)"></ellipse>
+<!-- Isopach Seam Thickness Contours (Closed Polygons) -->
+<ellipse cx="380" cy="190" fill="none" rx="110" ry="60" stroke="#903f00" stroke-width="2" transform="rotate(-15 380 190)"></ellipse>
+<text fill="#903f00" font-size="9" font-weight="bold" x="470" y="180">15m Isopach</text>
+<ellipse cx="380" cy="190" fill="none" rx="65" ry="35" stroke="#ba1a1a" stroke-dasharray="4,2" stroke-width="2" transform="rotate(-15 380 190)"></ellipse>
+<text fill="#ba1a1a" font-size="9" font-weight="bold" x="400" y="185">22m (Pinnacle)</text>
+<!-- Borehole Grid Pinpoints (Array) -->
+<g fill="#005b8c">
+<circle cx="180" cy="90" r="3"></circle>
+<circle cx="230" cy="80" r="3"></circle>
+<circle cx="280" cy="110" r="3"></circle>
+<circle cx="340" cy="95" r="3"></circle>
+<circle cx="410" cy="85" r="3"></circle>
+<circle cx="480" cy="100" r="3"></circle>
+<circle cx="560" cy="90" r="3"></circle>
+<circle cx="170" cy="160" r="3"></circle>
+<circle cx="220" cy="170" r="3"></circle>
+<circle cx="270" cy="150" r="3"></circle>
+<circle cx="320" cy="165" r="3"></circle>
+<circle cx="420" cy="155" r="3"></circle>
+<circle cx="470" cy="170" r="3"></circle>
+<circle cx="530" cy="160" r="3"></circle>
+<circle cx="190" cy="240" r="3"></circle>
+<circle cx="250" cy="230" r="3"></circle>
+<circle cx="310" cy="225" r="3"></circle>
+<circle cx="440" cy="230" r="3"></circle>
+<circle cx="500" cy="245" r="3"></circle>
+<circle cx="580" cy="235" r="3"></circle>
+<circle cx="660" cy="220" r="3"></circle>
+<circle cx="220" cy="300" r="3"></circle>
+<circle cx="280" cy="290" r="3"></circle>
+<circle cx="360" cy="285" r="3"></circle>
+<circle cx="430" cy="305" r="3"></circle>
+<circle cx="510" cy="295" r="3"></circle>
+<circle cx="610" cy="290" r="3"></circle>
+</g>
+<!-- Selected Borehole Indicator BH-1042 -->
+<circle cx="380" cy="190" fill="#b45309" r="7" stroke="#ffffff" stroke-width="2"></circle>
+<circle cx="380" cy="190" fill="none" r="14" stroke="#b45309" stroke-width="1.5">
+<animate attributename="r" dur="2.4s" repeatcount="indefinite" values="8;18;8"></animate>
+<animate attributename="opacity" dur="2.4s" repeatcount="indefinite" values="1;0;1"></animate>
+</circle>
+<rect fill="#213145" height="18" rx="3" width="70" x="395" y="172"></rect>
+<text fill="#ffffff" font-size="10" font-weight="700" text-anchor="middle" x="430" y="185">BH-1042</text>
+<!-- High Prospect AI Prediction Boundary Box -->
+<rect fill="none" height="90" rx="4" stroke="#0075b1" stroke-dasharray="6,4" stroke-width="2" width="160" x="520" y="180"></rect>
+<rect fill="#0075b1" height="18" rx="2" width="130" x="525" y="185"></rect>
+<text fill="#ffffff" font-size="9" font-weight="bold" text-anchor="middle" x="590" y="197">AI PROSPECT BLOCK: +1.7 MT</text>
+</svg>
+<!-- Floating GIS Heatmap Legend & Overlay Controls -->
+<div class="absolute bottom-space-md right-space-md bg-inverse-surface/90 backdrop-blur-md p-space-sm rounded-lg text-inverse-on-surface shadow-xl flex flex-col gap-space-xs">
+<span class="font-label-caps text-label-caps text-secondary-fixed-dim uppercase">Mn Grade Probability</span>
+<div class="flex items-center gap-space-sm text-body-sm">
+<span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-error"></span> &gt;80% High</span>
+<span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-primary-fixed-dim"></span> 50-80%</span>
+<span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-tertiary-fixed"></span> &lt;50% Low</span>
+</div>
+<div class="flex justify-between items-center text-secondary-fixed-dim pt-space-2xs text-body-sm">
+<span>Scale: 1:5,000</span>
+<span>Grid: 50m × 50m</span>
+</div>
+</div>
+<div class="absolute top-space-md left-space-md bg-surface/90 backdrop-blur-md px-space-sm py-1 rounded-md text-on-surface shadow-sm font-telemetry-sm text-telemetry-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-tertiary">navigation</span>
+<span>Azimuth 000° True North</span>
+</div>
+</div>
+</div>
+<!-- AI Reserve Estimation Pipeline Workflow (4 Cols) -->
+<div class="2xl:col-span-4 bg-surface-container-lowest rounded-xl shadow-sm p-space-base flex flex-col justify-between">
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-space-2xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary-container text-[20px]">account_tree</span>
+<h2 class="font-headline-sm text-headline-sm font-bold text-on-surface">ML Estimation Pipeline</h2>
+</div>
+<span class="font-label-caps text-label-caps px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-bold">Model v2.4</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Sequential data processing pipeline converting raw drill-hole lithology to block models.</p>
+<!-- Step-by-Step Vertical Flow Pipeline -->
+<div class="flex flex-col gap-space-xs relative">
+<!-- Step 1 -->
+<div class="flex items-start gap-space-sm p-space-xs rounded-lg hover:bg-surface-container-low transition-colors">
+<div class="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center font-telemetry-sm text-telemetry-sm text-on-surface-variant font-bold shrink-0">1</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-body-md font-semibold text-on-surface">Historical Core Logs</span>
+<span class="font-telemetry-sm text-telemetry-sm text-secondary">15 Years (MOIL)</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">Standardized OCR of legacy drilling notebooks</p>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="flex items-start gap-space-sm p-space-xs rounded-lg hover:bg-surface-container-low transition-colors">
+<div class="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center font-telemetry-sm text-telemetry-sm text-on-surface-variant font-bold shrink-0">2</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-body-md font-semibold text-on-surface">Recent Diamond Drilling</span>
+<span class="font-telemetry-sm text-telemetry-sm text-primary-container font-semibold">1,284 Holes</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">High precision triple-tube diamond coring logs</p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="flex items-start gap-space-sm p-space-xs rounded-lg hover:bg-surface-container-low transition-colors">
+<div class="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center font-telemetry-sm text-telemetry-sm text-on-surface-variant font-bold shrink-0">3</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-body-md font-semibold text-on-surface">Magnetic &amp; Gravity Survey</span>
+<span class="font-telemetry-sm text-telemetry-sm text-tertiary font-semibold">Airborne GSI</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">Bouguer anomaly density contrast calibration</p>
+</div>
+</div>
+<!-- Step 4 -->
+<div class="flex items-start gap-space-sm p-space-xs rounded-lg hover:bg-surface-container-low transition-colors">
+<div class="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center font-telemetry-sm text-telemetry-sm text-on-surface-variant font-bold shrink-0">4</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-body-md font-semibold text-on-surface">3D Kriging Random Forest Net</span>
+<span class="font-telemetry-sm text-telemetry-sm text-primary font-semibold">Loss: 0.012</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">Non-linear spatial interpolation &amp; variography</p>
+</div>
+</div>
+<!-- Step 5: Output Block Model -->
+<div class="flex items-start gap-space-sm p-space-xs rounded-lg bg-surface-container">
+<div class="w-6 h-6 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-telemetry-sm text-telemetry-sm font-bold shrink-0">✓</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-body-md font-bold text-on-surface">Block Model 42.8 MT</span>
+<span class="font-label-caps text-label-caps text-primary-container font-bold">READY</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">10m × 10m × 5m voxel block grade distribution</p>
+</div>
+</div>
+</div>
+<!-- Confidence Distribution Bar Breakdown -->
+<div class="flex flex-col gap-space-xs pt-space-xs">
+<span class="font-label-caps text-label-caps text-secondary uppercase">Confidence Distribution Model</span>
+<div class="w-full flex h-4 rounded-full overflow-hidden">
+<div class="bg-primary-container flex items-center justify-center text-on-primary-container text-[10px] font-bold" style="width: 72%;">72% High</div>
+<div class="bg-primary-fixed-dim flex items-center justify-center text-on-surface text-[10px] font-bold" style="width: 21%;">21% Med</div>
+<div class="bg-secondary-fixed flex items-center justify-center text-on-surface text-[10px] font-bold" style="width: 7%;">7%</div>
+</div>
+<div class="flex justify-between text-body-sm font-body-sm text-on-surface-variant">
+<span>High Confidence: <strong class="text-on-surface">30.8 MT</strong></span>
+<span>Med: <strong class="text-on-surface">9.0 MT</strong></span>
+<span>Low: <strong class="text-on-surface">3.0 MT</strong></span>
+</div>
+</div>
+</div>
+<!-- Human-In-The-Loop Sign-Off Card -->
+<div class="mt-space-md p-space-sm rounded-lg bg-surface-container-low flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-label-caps text-secondary uppercase">Geologist Verification</span>
+<span class="font-telemetry-sm text-telemetry-sm text-primary font-semibold">18 / 22 Blocks Signed</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[81.8%] rounded-full"></div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+          Chief Geologist Dr. S. K. Mukherjee pending review on Blocks #19, #20 (North fault wall).
+        </p>
+</div>
+</div>
+</div>
+<!-- Bottom Section: Geological Drill Assays & Recent Sampling Matrix -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-space-base flex flex-col gap-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[20px]">table_rows</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm font-bold text-on-surface">Recent Sub-Surface Borehole Core Logs &amp; Assay Registry</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Showing latest verified diamond core intercepts across Balaghat Central &amp; South Sectors</p>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-space-md py-space-xs rounded bg-surface-container text-on-surface text-body-sm font-body-sm font-medium hover:bg-surface-container-high transition-colors">
+          Filter by Grade (&gt;35%)
+        </button>
+<button class="px-space-md py-space-xs rounded bg-surface-container text-on-surface text-body-sm font-body-sm font-medium hover:bg-surface-container-high transition-colors">
+          Download CSV
+        </button>
+</div>
+</div>
+<!-- Data Table Matrix -->
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-md text-body-md border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-secondary font-label-caps text-label-caps uppercase">
+<th class="py-space-xs px-space-md">Borehole ID</th>
+<th class="py-space-xs px-space-md">Collar RL (m)</th>
+<th class="py-space-xs px-space-md">Total Depth</th>
+<th class="py-space-xs px-space-md">Intercept Interval</th>
+<th class="py-space-xs px-space-md">Ore Seam Thickness</th>
+<th class="py-space-xs px-space-md">Mn Assay %</th>
+<th class="py-space-xs px-space-md">Fe %</th>
+<th class="py-space-xs px-space-md">SiO2 %</th>
+<th class="py-space-xs px-space-md">AI Classification</th>
+<th class="py-space-xs px-space-md text-right">Verification</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-low font-telemetry-sm text-telemetry-sm">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-space-xs px-space-md font-bold text-on-surface">BH-1041</td>
+<td class="py-space-xs px-space-md">312.4m</td>
+<td class="py-space-xs px-space-md">160.0m</td>
+<td class="py-space-xs px-space-md text-secondary">112.4m - 121.8m</td>
+<td class="py-space-xs px-space-md font-semibold text-on-surface">9.4m</td>
+<td class="py-space-xs px-space-md font-bold text-primary-container">41.2% Mn</td>
+<td class="py-space-xs px-space-md">6.8%</td>
+<td class="py-space-xs px-space-md">8.1%</td>
+<td class="py-space-xs px-space-md">
+<span class="px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed text-[11px] font-bold">High Grade Pyrolusite</span>
+</td>
+<td class="py-space-xs px-space-md text-right">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-primary text-[11px] font-bold">VERIFIED</span>
+</td>
+</tr>
+<!-- Row 2 (Selected) -->
+<tr class="bg-surface-container-low/80 font-medium hover:bg-surface-container transition-colors">
+<td class="py-space-xs px-space-md font-bold text-primary-container flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px]">arrow_right</span> BH-1042
+            </td>
+<td class="py-space-xs px-space-md">308.8m</td>
+<td class="py-space-xs px-space-md">184.0m</td>
+<td class="py-space-xs px-space-md text-on-surface">142.1m - 154.5m</td>
+<td class="py-space-xs px-space-md font-bold text-on-surface">12.4m</td>
+<td class="py-space-xs px-space-md font-bold text-primary-container">31.8% Mn</td>
+<td class="py-space-xs px-space-md">7.4%</td>
+<td class="py-space-xs px-space-md">11.2%</td>
+<td class="py-space-xs px-space-md">
+<span class="px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed text-[11px] font-bold">Medium Grade Braunite</span>
+</td>
+<td class="py-space-xs px-space-md text-right">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-primary text-[11px] font-bold">VERIFIED</span>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-space-xs px-space-md font-bold text-on-surface">BH-1043</td>
+<td class="py-space-xs px-space-md">315.1m</td>
+<td class="py-space-xs px-space-md">205.0m</td>
+<td class="py-space-xs px-space-md text-secondary">168.0m - 183.2m</td>
+<td class="py-space-xs px-space-md font-semibold text-on-surface">15.2m</td>
+<td class="py-space-xs px-space-md font-bold text-primary-container">39.4% Mn</td>
+<td class="py-space-xs px-space-md">5.9%</td>
+<td class="py-space-xs px-space-md">7.6%</td>
+<td class="py-space-xs px-space-md">
+<span class="px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed text-[11px] font-bold">High Grade Lump Ore</span>
+</td>
+<td class="py-space-xs px-space-md text-right">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-primary text-[11px] font-bold">VERIFIED</span>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-space-xs px-space-md font-bold text-on-surface">BH-1044</td>
+<td class="py-space-xs px-space-md">319.6m</td>
+<td class="py-space-xs px-space-md">220.0m</td>
+<td class="py-space-xs px-space-md text-secondary">195.4m - 206.1m</td>
+<td class="py-space-xs px-space-md font-semibold text-on-surface">10.7m</td>
+<td class="py-space-xs px-space-md font-bold text-on-surface">28.5% Mn</td>
+<td class="py-space-xs px-space-md">9.2%</td>
+<td class="py-space-xs px-space-md">14.8%</td>
+<td class="py-space-xs px-space-md">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface text-[11px] font-bold">Ferruginous Siliceous</span>
+</td>
+<td class="py-space-xs px-space-md text-right">
+<span class="px-2 py-0.5 rounded bg-error-container text-on-error-container text-[11px] font-bold">AUDIT REQUIRED</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Drill Summary Bar -->
+<div class="flex flex-col sm:flex-row items-center justify-between pt-space-xs text-body-sm font-body-sm text-on-surface-variant">
+<div>
+        Showing 4 of 1,284 boreholes in the current geological sector. Next diamond drilling campaign starts in 14 days.
+      </div>
+<div class="flex items-center gap-space-xs mt-2 sm:mt-0">
+<button class="px-space-sm py-1 rounded bg-surface-container hover:bg-surface-container-high text-on-surface">Previous</button>
+<button class="px-space-sm py-1 rounded bg-primary-container text-on-primary-container font-semibold">1</button>
+<button class="px-space-sm py-1 rounded bg-surface-container hover:bg-surface-container-high text-on-surface">2</button>
+<button class="px-space-sm py-1 rounded bg-surface-container hover:bg-surface-container-high text-on-surface">3</button>
+<button class="px-space-sm py-1 rounded bg-surface-container hover:bg-surface-container-high text-on-surface">Next</button>
+</div>
+</div>
+</div>
+</div></main></div></body></html>
