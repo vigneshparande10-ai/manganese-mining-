@@ -1,0 +1,112 @@
+.sidebar {
+  position: fixed;
+  inset: 0 auto 0 0;
+  width: 250px;
+  background: var(--navy);
+  color: #d8e4f3;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+}
+.brand {
+  height: 76px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 0 21px;
+  border-bottom: 1px solid #31465c;
+}
+.brandmark {
+  width: 34px;
+  height: 34px;
+  border-radius: 7px;
+  background: linear-gradient(145deg, #ea8a31, #913e08);
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-weight: 700;
+  font-size: 17px;
+}
+.brand b { font-size: 15px; letter-spacing: -.02em; color: #fff; }
+.brand small {
+  display: block;
+  color: #91a9c2;
+  font: 600 9px var(--mono);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-top: 3px;
+}
+.navLabel {
+  font: 700 9px var(--mono);
+  letter-spacing: .11em;
+  text-transform: uppercase;
+  color: #8298af;
+  padding: 23px 21px 8px;
+}
+.nav { padding: 0 12px; }
+.nav button {
+  border: 0;
+  background: transparent;
+  color: #b4c3d3;
+  width: 100%;
+  padding: 10px 11px;
+  text-align: left;
+  border-radius: 5px;
+  font: 500 13px var(--sans);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  margin: 2px 0;
+}
+.nav button:hover { background: #22384e; color: #fff; }
+.nav button.active { background: var(--orange); color: #fff; font-weight: 700; }
+.nav .ico { width: 17px; text-align: center; font-size: 16px; }
+.badge {
+  margin-left: auto;
+  padding: 2px 6px;
+  border-radius: 10px;
+  background: #b33136;
+  color: #fff;
+  font: 700 10px var(--mono);
+}
+.badge.blue { background: #157ead; }
+.health {
+  margin: auto 13px 15px;
+  border: 1px solid #385066;
+  background: #1b3045;
+  border-radius: 7px;
+  padding: 13px;
+}
+.healthRow {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  font: 500 11px var(--mono);
+}
+.track {
+  height: 4px;
+  background: #385168;
+  border-radius: 5px;
+  margin: 7px 0;
+}
+.track i {
+  display: block;
+  height: 100%;
+  width: 99.4%;
+  background: #36b7e7;
+  border-radius: 5px;
+}
+
+@media (max-width: 950px) {
+  .sidebar { width: 64px; }
+  .brand { padding: 0; justify-content: center; }
+  .brand div:not(.brandmark), .navLabel, .nav button span:not(.ico):not(.badge), .health { display: none; }
+  .nav { padding: 0 8px; }
+  .nav button { justify-content: center; padding: 11px 0; }
+  .nav .badge { position: absolute; margin-left: 25px; margin-top: -17px; }
+}
+
+@media (max-width: 600px) {
+  .sidebar { display: none; }
+}

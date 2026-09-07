@@ -1,0 +1,268 @@
+.opsRoom {
+  background: #22272b;
+  color: #edf1f3;
+  margin: -23px -26px -34px;
+  padding: 22px 26px 35px;
+  min-height: calc(100vh - 64px);
+}
+.opsRoom h1 { color: #f4f5f6; }
+.opsRoom p { color: #aab5bd; }
+.context {
+  background: #30363a;
+  border-color: #465057;
+  color: #d9e2e7;
+  border: 1px solid #465057;
+  padding: 8px 11px;
+  border-radius: 5px;
+  white-space: nowrap;
+  font: 10px var(--mono);
+}
+.context i { color: var(--green); font-style: normal; }
+
+.opsGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(330px, 1fr);
+  gap: 14px;
+}
+.opsPanel {
+  background: #2b3034;
+  border: 1px solid #3a4247;
+  border-radius: 5px;
+  margin-top: 14px;
+}
+.opsPanel:first-child { margin-top: 0; }
+.opsPanel h2 {
+  font-size: 16px;
+  margin: 0;
+  color: #f1f4f5;
+}
+.opsHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 15px 10px;
+}
+.opsHead p {
+  margin: 3px 0 0;
+  color: #aeb8c0;
+  font-size: 10px;
+}
+.opsFilters { display: flex; gap: 7px; }
+.opsFilter {
+  background: #394147;
+  border: 1px solid #4e5960;
+  color: #e5eaed;
+  border-radius: 3px;
+  padding: 6px 8px;
+  font: 600 9px var(--mono);
+  cursor: pointer;
+}
+.opsFilter:hover { background: #48555b; }
+
+.opsKpis {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 7px;
+  padding: 0 12px 13px;
+}
+.opsKpi {
+  background: #353b3f;
+  border-top: 2px solid #6fc191;
+  padding: 9px 9px 7px;
+}
+.opsKpi.warn { border-color: #e6af42; }
+.asset {
+  color: #b5c0c7;
+  font: 700 9px var(--mono);
+}
+.opsKpi b {
+  font: 600 21px var(--mono);
+  letter-spacing: -.06em;
+  display: block;
+  color: #f5f6f6;
+  margin: 5px 0 1px;
+}
+.opsKpi small { font-size: 9px; color: #9eabb3; }
+.opsSpark {
+  height: 20px;
+  width: 100%;
+  margin-top: 5px;
+}
+
+.opsRecs { padding: 0 12px 12px; }
+.opsRec {
+  border-left: 3px solid #d7a43c;
+  background: #383e42;
+  margin: 6px 0;
+  padding: 8px 9px;
+}
+.opsRec strong { font-size: 10px; color: #eff2f3; }
+.opsRec p {
+  color: #a9b5bd;
+  font-size: 9px;
+  margin: 3px 0 0;
+  line-height: 1.35;
+}
+
+.opsMapWrap {
+  padding: 0 12px 12px;
+  position: relative;
+}
+.mapbox {
+  height: 380px;
+  border: 1px solid #4b565d;
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+}
+
+.mapTools {
+  position: absolute;
+  left: 22px;
+  top: 10px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.mapTools button {
+  height: 31px;
+  width: 31px;
+  border: 1px solid #4d585f;
+  background: #252c30;
+  color: #f4f6f7;
+  border-radius: 3px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.mapLayerPanel {
+  position: absolute;
+  right: 22px;
+  top: 10px;
+  z-index: 2;
+  background: #252c30e8;
+  border: 1px solid #4b565d;
+  border-radius: 3px;
+  padding: 8px 9px;
+  min-width: 128px;
+}
+.mapLayerPanel b {
+  font: 700 9px var(--mono);
+  letter-spacing: .08em;
+  color: #e9eef0;
+}
+.mapLayerPanel label {
+  display: flex;
+  gap: 6px;
+  color: #b5c1c8;
+  font-size: 9px;
+  margin-top: 6px;
+  align-items: center;
+}
+.mapLayerPanel input { accent-color: #55bc8a; }
+
+.opsAssistant {
+  display: flex;
+  flex-direction: column;
+  min-height: 465px;
+}
+.assistantSpace {
+  margin: 10px 12px;
+  background: #373d40;
+  flex: 1;
+  min-height: 180px;
+  border: 1px solid #454e53;
+  padding: 14px;
+  color: #dbe5e9;
+  font-size: 11px;
+  line-height: 1.55;
+}
+.assistantSpace span {
+  color: #5ab9e2;
+  font: 700 9px var(--mono);
+  letter-spacing: .08em;
+}
+.assistantSpace p { margin: 7px 0 0; }
+
+.promptGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  padding: 10px 12px;
+}
+.promptGrid button {
+  border: 0;
+  background: #3c4448;
+  color: #dce3e7;
+  text-align: left;
+  padding: 8px;
+  font: 600 9px var(--sans);
+  cursor: pointer;
+  border-radius: 3px;
+}
+.promptGrid button:hover { background: #48555b; }
+.assistantInput {
+  display: flex;
+  gap: 7px;
+  padding: 0 12px 12px;
+}
+.assistantInput input {
+  background: #202629;
+  border: 1px solid #475158;
+  color: #eef2f3;
+  padding: 9px;
+  flex: 1;
+  border-radius: 3px;
+  font: 10px var(--sans);
+}
+.assistantInput button {
+  border: 0;
+  background: #0b89b9;
+  color: #fff;
+  border-radius: 3px;
+  padding: 0 11px;
+  cursor: pointer;
+}
+
+.opsBottom {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 14px;
+  margin-top: 14px;
+}
+.cycleChart {
+  height: 205px;
+  padding: 10px 12px;
+}
+.cycleChart svg { width: 100%; height: 100%; }
+.cycleList { padding: 2px 12px 12px; }
+.cycleRow {
+  display: grid;
+  grid-template-columns: 60px 1fr 65px;
+  gap: 8px;
+  padding: 9px 2px;
+  border-bottom: 1px solid #40484d;
+  color: #dfe6e9;
+  font: 10px var(--mono);
+}
+.cycleRow small { color: #9baab2; font: 9px var(--mono); }
+
+/* Custom Map popup styles */
+.mapboxgl-popup-content {
+  background: #192329 !important;
+  color: #fff !important;
+  border: 1px solid #45525a;
+  border-radius: 4px !important;
+  padding: 10px 14px !important;
+  font-family: var(--sans);
+  font-size: 12px;
+}
+.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip { border-top-color: #45525a !important; }
+
+@media (max-width: 950px) {
+  .opsGrid, .opsBottom { grid-template-columns: 1fr; }
+  .opsRoom { margin: -23px -26px -34px; padding: 22px 26px 35px; }
+}
+@media (max-width: 600px) {
+  .opsKpis { grid-template-columns: 1fr 1fr; }
+}

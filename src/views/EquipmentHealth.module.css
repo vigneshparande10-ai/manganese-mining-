@@ -1,0 +1,67 @@
+.equipmentGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 14px;
+}
+.machine {
+  padding: 16px;
+  position: relative;
+  overflow: hidden;
+}
+.machineIcon {
+  font-size: 30px;
+  color: #ca6a18;
+}
+.machine h3 {
+  margin: 12px 0 4px;
+}
+.dial {
+  width: 106px;
+  height: 55px;
+  border-radius: 110px 110px 0 0;
+  border: 12px solid #e7edf3;
+  border-bottom: 0;
+  margin: 17px auto 9px;
+  position: relative;
+}
+.dial:after {
+  content: '';
+  width: 3px;
+  height: 43px;
+  position: absolute;
+  bottom: 0;
+  left: 48px;
+  background: var(--green);
+  transform: rotate(38deg);
+  transform-origin: bottom;
+}
+.machine.warn .dial:after {
+  background: var(--amber);
+  transform: rotate(-7deg);
+}
+.machine.red .dial:after {
+  background: var(--red);
+  transform: rotate(-37deg);
+}
+.healthNumber {
+  text-align: center;
+  font: 600 23px var(--mono);
+}
+.track {
+  height: 4px;
+  background: #385168;
+  border-radius: 5px;
+  margin: 7px 0;
+}
+.track i {
+  display: block;
+  height: 100%;
+  border-radius: 5px;
+}
+
+@media (max-width: 950px) {
+  .equipmentGrid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .equipmentGrid { grid-template-columns: 1fr; }
+}
