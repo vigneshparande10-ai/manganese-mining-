@@ -259,6 +259,40 @@
 }
 .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip { border-top-color: #45525a !important; }
 
+/* Custom map markers */
+.markerDot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.2s;
+}
+.markerDot:hover { transform: scale(1.2); }
+.markerDot::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+  opacity: 0.6;
+}
+.markerDot.critical { background: #ef5350; }
+.markerDot.critical::after { border: 2px solid #ef5350; }
+.markerDot.advisory { background: #f4c452; }
+.markerDot.advisory::after { border: 2px solid #f4c452; }
+.markerDot.nominal { background: #55c28c; }
+.markerDot.nominal::after { border: 2px solid #55c28c; animation-duration: 3s; }
+
+@keyframes pulse {
+  0% { transform: scale(0.8); opacity: 0.8; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
 @media (max-width: 950px) {
   .opsGrid, .opsBottom { grid-template-columns: 1fr; }
   .opsRoom { margin: -23px -26px -34px; padding: 22px 26px 35px; }

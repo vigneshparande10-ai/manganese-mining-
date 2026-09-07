@@ -1,5 +1,6 @@
-import React, { useState, useRef } from 'react';
-import Map, { Source, Layer, NavigationControl, Popup } from 'react-map-gl/mapbox';
+import React, { useState, useRef, useEffect } from 'react';
+import Map, { Source, Layer, NavigationControl, Popup, Marker } from 'react-map-gl/mapbox';
+import useLiveSimulation from '../hooks/useLiveSimulation';
 import styles from './LiveOperations.module.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
@@ -36,8 +37,11 @@ export default function LiveOperations() {
   const mapRef = useRef();
   const [layersVisible, setLayersVisible] = useState({ assets: true, geology: true, haul: true, heatmap: false });
   const [selectedAsset, setSelectedAsset] = useState(null);
+  const { throughput, truckPosition } = useLiveSimulation();
+  
   const [assistantText, setAssistantText] = useState('');
   const [assistantInput, setAssistantInput] = useState('');
+  const [isTyping, setIsTyping] = useState(false);
 
   const flyToMine = () => {
     mapRef.current?.flyTo({ center: [80.63, 21.82], zoom: 13.2, pitch: 60, bearing: -18, duration: 2000, essential: true });
@@ -58,15 +62,28 @@ export default function LiveOperations() {
   };
 
   const askAssistant = (q) => {
-    if (!q.trim()) return;
+    if (!q.trim() || isTyping) return;
     const responses = {
       "Which shifts caused the highest throughput variance this month?": "Shift B accounts for 46% of monthly variance, led by HT-032 congestion in the OP-4 east ramp.",
       "List our best haul trucks by throughput.": "DT-24, DT-17, and DT-41 lead the current month at 95%, 93%, and 92% schedule adherence.",
       "Will we reach our monthly KPI target?": "Current baseline: 128,500 t. With the recommended fleet reallocation, the model projects 142,600 t (97% of target).",
       "Which excavators have the most idle time?": "EX-002 has the highest idle time at 6h 13m, followed by EX-004 at 5h 36m."
     };
-    setAssistantText(responses[q] || 'I found a shift-level operations signal. The primary opportunity is to rebalance haul assignments into OP-4 and validate EX-002 idle time at the next dispatch review.');
+    
+    const fullResponse = responses[q] || 'I found a shift-level operations signal. The primary opportunity is to rebalance haul assignments into OP-4 and validate EX-002 idle time at the next dispatch review.';
     setAssistantInput('');
+    setIsTyping(true);
+    setAssistantText('');
+    
+    let i = 0;
+    const intervalId = setInterval(() => {
+      setAssistantText(fullResponse.substring(0, i + 1));
+      i++;
+      if (i >= fullResponse.length) {
+        clearInterval(intervalId);
+        setIsTyping(false);
+      }
+    }, 25);
   };
 
   return (
@@ -89,10 +106,10 @@ export default function LiveOperations() {
                 <div className={styles.opsFilters}><button className={styles.opsFilter}>⌖ LOCATION</button><button className={styles.opsFilter}>▾ CURRENT</button></div>
               </div>
               <div className={styles.opsKpis}>
-                <div className={styles.opsKpi}><span className={styles.asset}>EX-001</span><b>690 <small>t/hr</small></b><small style={{ color: '#78c69c' }}>▲ 2% · 96% target</small><svg className={styles.opsSpark} viewBox="0 0 120 20"><polyline points="0,16 17,11 32,15 47,8 63,13 76,10 91,14 104,5 120,7" fill="none" stroke="#72bd92" strokeWidth="2"/></svg></div>
-                <div className={`${styles.opsKpi} ${styles.warn}`}><span className={styles.asset}>EX-002</span><b>770 <small>t/hr</small></b><small style={{ color: '#e4ad46' }}>▲ 1% · 91% target</small><svg className={styles.opsSpark} viewBox="0 0 120 20"><polyline points="0,15 18,16 34,8 51,12 67,6 82,12 101,4 120,10" fill="none" stroke="#e4ad46" strokeWidth="2"/></svg></div>
-                <div className={styles.opsKpi}><span className={styles.asset}>EX-003</span><b>810 <small>t/hr</small></b><small style={{ color: '#78c69c' }}>▲ 3% · 95% target</small><svg className={styles.opsSpark} viewBox="0 0 120 20"><polyline points="0,14 20,8 36,11 51,6 70,13 89,6 105,8 120,2" fill="none" stroke="#72bd92" strokeWidth="2"/></svg></div>
-                <div className={`${styles.opsKpi} ${styles.warn}`}><span className={styles.asset}>EX-004</span><b>610 <small>t/hr</small></b><small style={{ color: '#e4ad46' }}>▼ 4% · 78% target</small><svg className={styles.opsSpark} viewBox="0 0 120 20"><polyline points="0,3 18,6 34,5 50,10 67,7 81,15 101,13 120,18" fill="none" stroke="#e4ad46" strokeWidth="2"/></svg></div>
+                <div className={styles.opsKpi}><span className={styles.asset}>EX-001</span><b style={{ transition: 'color 0.3s' }}>{throughput.EX001} <small>t/hr</small></b><small style={{ color: '#78c69c' }}>▲ 2% · 96% target</small><svg className={styles.opsSpark} viewBox="0 0 120 20"><polyline points="0,16 17,11 32,15 47,8 63,13 76,10 91,14 104,5 120,7" fill="none" stroke="#72bd92" strokeWidth="2"/></svg></div>
+                <div className={`${styles.opsKpi} ${styles.warn}`}><span className={styles.asset}>EX-002</span><b style={{ transition: 'color 0.3s' }}>{throughput.EX002} <small>t/hr</small></b><small style={{ color: '#e4ad46' }}>▲ 1% · 91% target</small><svg className={styles.opsSpark} viewBox="0 0 120 20"><polyline points="0,15 18,16 34,8 51,12 67,6 82,12 101,4 120,10" fill="none" stroke="#e4ad46" strokeWidth="2"/></svg></div>
+                <div className={styles.opsKpi}><span className={styles.asset}>EX-003</span><b style={{ transition: 'color 0.3s' }}>{throughput.EX003} <small>t/hr</small></b><small style={{ color: '#78c69c' }}>▲ 3% · 95% target</small><svg className={styles.opsSpark} viewBox="0 0 120 20"><polyline points="0,14 20,8 36,11 51,6 70,13 89,6 105,8 120,2" fill="none" stroke="#72bd92" strokeWidth="2"/></svg></div>
+                <div className={`${styles.opsKpi} ${styles.warn}`}><span className={styles.asset}>EX-004</span><b style={{ transition: 'color 0.3s' }}>{throughput.EX004} <small>t/hr</small></b><small style={{ color: '#e4ad46' }}>▼ 4% · 78% target</small><svg className={styles.opsSpark} viewBox="0 0 120 20"><polyline points="0,3 18,6 34,5 50,10 67,7 81,15 101,13 120,18" fill="none" stroke="#e4ad46" strokeWidth="2"/></svg></div>
               </div>
             </article>
 
@@ -132,22 +149,6 @@ export default function LiveOperations() {
 
                     {layersVisible.assets && (
                       <Source type="geojson" data={assetFeatures}>
-                        <Layer 
-                          id="assets" 
-                          type="circle" 
-                          paint={{
-                            'circle-radius': 8,
-                            'circle-color': ['match', ['get', 'status'], 'Critical', '#ef5350', 'Advisory', '#f4c452', '#55c28c'],
-                            'circle-stroke-color': '#fff',
-                            'circle-stroke-width': 2
-                          }} 
-                        />
-                        <Layer 
-                          id="asset-labels" 
-                          type="symbol" 
-                          layout={{ 'text-field': ['get', 'id'], 'text-size': 11, 'text-offset': [0, 1.4] }} 
-                          paint={{ 'text-color': '#ffffff', 'text-halo-color': '#1a252b', 'text-halo-width': 1.5 }} 
-                        />
                         {layersVisible.heatmap && (
                           <Layer
                             id="asset-heat"
@@ -159,6 +160,24 @@ export default function LiveOperations() {
                           />
                         )}
                       </Source>
+                    )}
+
+                    {layersVisible.assets && (
+                      <>
+                        <Marker longitude={80.641} latitude={21.818} anchor="center">
+                          <div className={`${styles.markerDot} ${styles.critical}`} onClick={() => setSelectedAsset({lngLat: {lng: 80.641, lat: 21.818}, id: 'HT-032', status: 'Critical'})}></div>
+                        </Marker>
+                        <Marker longitude={80.625} latitude={21.825} anchor="center">
+                          <div className={`${styles.markerDot} ${styles.advisory}`} onClick={() => setSelectedAsset({lngLat: {lng: 80.625, lat: 21.825}, id: 'EX-002', status: 'Advisory'})}></div>
+                        </Marker>
+                        <Marker longitude={80.634} latitude={21.831} anchor="center">
+                          <div className={`${styles.markerDot} ${styles.nominal}`} onClick={() => setSelectedAsset({lngLat: {lng: 80.634, lat: 21.831}, id: 'EX-003', status: 'Nominal'})}></div>
+                        </Marker>
+                        {/* Live moving truck */}
+                        <Marker longitude={truckPosition[0]} latitude={truckPosition[1]} anchor="center">
+                          <div className={`${styles.markerDot} ${styles.nominal}`} onClick={() => setSelectedAsset({lngLat: {lng: truckPosition[0], lat: truckPosition[1]}, id: 'DT-24', status: 'Nominal'})}></div>
+                        </Marker>
+                      </>
                     )}
 
                     {selectedAsset && (

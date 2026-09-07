@@ -1,6 +1,11 @@
 import React from 'react';
+import useLiveSimulation from '../hooks/useLiveSimulation';
 
 export default function CommandCenter() {
+  const { throughput } = useLiveSimulation();
+  const totalThroughput = Object.values(throughput).reduce((a, b) => a + b, 0);
+  const throughputChange = (totalThroughput / 2870 * 100 - 100).toFixed(1);
+  const todayOre = Math.floor(42680 + (throughputChange * 120));
   const notify = (msg) => window.dispatchEvent(new CustomEvent('notify', { detail: msg }));
 
   return (
@@ -18,13 +23,13 @@ export default function CommandCenter() {
       <div className="metrics">
         <article className="card metric">
           <span className="eyebrow">Today's ore output</span>
-          <span className="change">↑ 4.8%</span>
-          <div className="metric-val">42,680 <small>t</small></div>
+          <span className={`change ${throughputChange < 0 ? 'red' : ''}`}>{throughputChange >= 0 ? '↑' : '↓'} {Math.abs(throughputChange)}%</span>
+          <div className="metric-val" style={{ transition: 'color 0.3s' }}>{todayOre.toLocaleString()} <small>t</small></div>
           <small>Target 46,000 t</small>
           <div className="mini-bars">
             <i style={{ height: '34%' }}></i><i style={{ height: '48%' }}></i><i style={{ height: '43%' }}></i>
             <i style={{ height: '67%' }}></i><i style={{ height: '61%' }}></i><i style={{ height: '86%' }}></i>
-            <i style={{ height: '72%' }}></i><i style={{ height: '100%' }}></i>
+            <i style={{ height: '72%' }}></i><i style={{ height: `${Math.min(100, 80 + throughputChange * 10)}%`, transition: 'height 1s' }}></i>
           </div>
         </article>
         <article className="card metric">
