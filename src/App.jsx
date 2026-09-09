@@ -7,19 +7,24 @@ import RiskShortfall from './views/RiskShortfall';
 import EquipmentHealth from './views/EquipmentHealth';
 import Simulator from './views/Simulator';
 import ReserveIntelligence from './views/ReserveIntelligence';
+import { useStore } from './store/useStore';
 
 export default function App() {
   const [activeView, setActiveView] = useState('command');
   const [toastMsg, setToastMsg] = useState('');
+  const startSimulation = useStore(state => state.startSimulation);
 
   useEffect(() => {
+    // Start the global mock websocket simulation
+    startSimulation();
+
     const handleNotify = (e) => {
       setToastMsg(e.detail);
       setTimeout(() => setToastMsg(''), 2800);
     };
     window.addEventListener('notify', handleNotify);
     return () => window.removeEventListener('notify', handleNotify);
-  }, []);
+  }, [startSimulation]);
 
   const renderView = () => {
     switch (activeView) {

@@ -1,4 +1,5 @@
 import React from 'react';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import styles from './RiskShortfall.module.css';
 
 export default function RiskShortfall({ setActiveView }) {
@@ -36,21 +37,26 @@ export default function RiskShortfall({ setActiveView }) {
             </div>
             <span className="eyebrow">Monte Carlo n=10,000</span>
           </div>
-          <div className="chart">
-            <svg viewBox="0 0 700 240" preserveAspectRatio="none">
-              <g stroke="#dce5ee">
-                <line x1="0" y1="40" x2="700" y2="40" />
-                <line x1="0" y1="90" x2="700" y2="90" />
-                <line x1="0" y1="140" x2="700" y2="140" />
-                <line x1="0" y1="190" x2="700" y2="190" />
-              </g>
-              <path d="M0 210 C90 200 150 185 220 155 S350 112 420 82 S560 46 700 33 L700 240 L0 240Z" fill="#db3d3d18" />
-              <path d="M0 210 C90 200 150 185 220 155 S350 112 420 82 S560 46 700 33" fill="none" stroke="#db3d3d" strokeWidth="3" />
-              <text x="646" y="27" fill="#db3d3d" fontSize="11" fontFamily="monospace">82%</text>
-            </svg>
-            <div className="chart-labels">
-              <span>Today 12%</span><span>Day 7 · 34%</span><span>Day 14 · 68%</span><span>Day 21 · 79%</span><span>Day 30 · 82%</span>
-            </div>
+          <div className="chart" style={{ height: '240px' }}>
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart data={[
+                { day: 'Today', probability: 12 },
+                { day: 'Day 7', probability: 34 },
+                { day: 'Day 14', probability: 68 },
+                { day: 'Day 21', probability: 79 },
+                { day: 'Day 30', probability: 82 }
+              ]} margin={{ top: 20, right: 30, left: 0, bottom: 0 }}>
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#dce5ee" />
+                <XAxis dataKey="day" axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: '#64748b' }} dy={10} />
+                <YAxis hide domain={[0, 100]} />
+                <Tooltip 
+                  contentStyle={{ borderRadius: '6px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }} 
+                  labelStyle={{ fontWeight: 600, color: '#334155', marginBottom: '4px' }}
+                  formatter={(value) => value + '%'}
+                />
+                <Area type="monotone" dataKey="probability" stroke="#db3d3d" strokeWidth={3} fill="#db3d3d18" dot={{ r: 4, fill: '#db3d3d' }} />
+              </AreaChart>
+            </ResponsiveContainer>
           </div>
         </article>
         

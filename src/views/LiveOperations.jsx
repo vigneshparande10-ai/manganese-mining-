@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import Map, { Source, Layer, NavigationControl, Popup, Marker } from 'react-map-gl/mapbox';
-import useLiveSimulation from '../hooks/useLiveSimulation';
+import { useStore } from '../store/useStore';
 import styles from './LiveOperations.module.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
@@ -37,7 +38,7 @@ export default function LiveOperations() {
   const mapRef = useRef();
   const [layersVisible, setLayersVisible] = useState({ assets: true, geology: true, haul: true, heatmap: false });
   const [selectedAsset, setSelectedAsset] = useState(null);
-  const { throughput, truckPosition } = useLiveSimulation();
+  const { throughput, throughputHistory, truckPosition } = useStore();
   
   const [assistantText, setAssistantText] = useState('');
   const [assistantInput, setAssistantInput] = useState('');
@@ -106,10 +107,46 @@ export default function LiveOperations() {
                 <div className={styles.opsFilters}><button className={styles.opsFilter}>⌖ LOCATION</button><button className={styles.opsFilter}>▾ CURRENT</button></div>
               </div>
               <div className={styles.opsKpis}>
-                <div className={styles.opsKpi}><span className={styles.asset}>EX-001</span><b style={{ transition: 'color 0.3s' }}>{throughput.EX001} <small>t/hr</small></b><small style={{ color: '#78c69c' }}>▲ 2% · 96% target</small><svg className={styles.opsSpark} viewBox="0 0 120 20"><polyline points="0,16 17,11 32,15 47,8 63,13 76,10 91,14 104,5 120,7" fill="none" stroke="#72bd92" strokeWidth="2"/></svg></div>
-                <div className={`${styles.opsKpi} ${styles.warn}`}><span className={styles.asset}>EX-002</span><b style={{ transition: 'color 0.3s' }}>{throughput.EX002} <small>t/hr</small></b><small style={{ color: '#e4ad46' }}>▲ 1% · 91% target</small><svg className={styles.opsSpark} viewBox="0 0 120 20"><polyline points="0,15 18,16 34,8 51,12 67,6 82,12 101,4 120,10" fill="none" stroke="#e4ad46" strokeWidth="2"/></svg></div>
-                <div className={styles.opsKpi}><span className={styles.asset}>EX-003</span><b style={{ transition: 'color 0.3s' }}>{throughput.EX003} <small>t/hr</small></b><small style={{ color: '#78c69c' }}>▲ 3% · 95% target</small><svg className={styles.opsSpark} viewBox="0 0 120 20"><polyline points="0,14 20,8 36,11 51,6 70,13 89,6 105,8 120,2" fill="none" stroke="#72bd92" strokeWidth="2"/></svg></div>
-                <div className={`${styles.opsKpi} ${styles.warn}`}><span className={styles.asset}>EX-004</span><b style={{ transition: 'color 0.3s' }}>{throughput.EX004} <small>t/hr</small></b><small style={{ color: '#e4ad46' }}>▼ 4% · 78% target</small><svg className={styles.opsSpark} viewBox="0 0 120 20"><polyline points="0,3 18,6 34,5 50,10 67,7 81,15 101,13 120,18" fill="none" stroke="#e4ad46" strokeWidth="2"/></svg></div>
+                <div className={styles.opsKpi}>
+                  <span className={styles.asset}>EX-001</span><b style={{ transition: 'color 0.3s' }}>{throughput.EX001} <small>t/hr</small></b><small style={{ color: '#78c69c' }}>▲ 2% · 96% target</small>
+                  <div className={styles.opsSpark} style={{ height: '20px', width: '120px' }}>
+                    <ResponsiveContainer width="100%" height="100%">
+                      <LineChart data={throughputHistory}>
+                        <Line type="monotone" dataKey="EX001" stroke="#72bd92" strokeWidth={2} dot={false} isAnimationActive={false} />
+                      </LineChart>
+                    </ResponsiveContainer>
+                  </div>
+                </div>
+                <div className={`${styles.opsKpi} ${styles.warn}`}>
+                  <span className={styles.asset}>EX-002</span><b style={{ transition: 'color 0.3s' }}>{throughput.EX002} <small>t/hr</small></b><small style={{ color: '#e4ad46' }}>▲ 1% · 91% target</small>
+                  <div className={styles.opsSpark} style={{ height: '20px', width: '120px' }}>
+                    <ResponsiveContainer width="100%" height="100%">
+                      <LineChart data={throughputHistory}>
+                        <Line type="monotone" dataKey="EX002" stroke="#e4ad46" strokeWidth={2} dot={false} isAnimationActive={false} />
+                      </LineChart>
+                    </ResponsiveContainer>
+                  </div>
+                </div>
+                <div className={styles.opsKpi}>
+                  <span className={styles.asset}>EX-003</span><b style={{ transition: 'color 0.3s' }}>{throughput.EX003} <small>t/hr</small></b><small style={{ color: '#78c69c' }}>▲ 3% · 95% target</small>
+                  <div className={styles.opsSpark} style={{ height: '20px', width: '120px' }}>
+                    <ResponsiveContainer width="100%" height="100%">
+                      <LineChart data={throughputHistory}>
+                        <Line type="monotone" dataKey="EX003" stroke="#72bd92" strokeWidth={2} dot={false} isAnimationActive={false} />
+                      </LineChart>
+                    </ResponsiveContainer>
+                  </div>
+                </div>
+                <div className={`${styles.opsKpi} ${styles.warn}`}>
+                  <span className={styles.asset}>EX-004</span><b style={{ transition: 'color 0.3s' }}>{throughput.EX004} <small>t/hr</small></b><small style={{ color: '#e4ad46' }}>▼ 4% · 78% target</small>
+                  <div className={styles.opsSpark} style={{ height: '20px', width: '120px' }}>
+                    <ResponsiveContainer width="100%" height="100%">
+                      <LineChart data={throughputHistory}>
+                        <Line type="monotone" dataKey="EX004" stroke="#e4ad46" strokeWidth={2} dot={false} isAnimationActive={false} />
+                      </LineChart>
+                    </ResponsiveContainer>
+                  </div>
+                </div>
               </div>
             </article>
 
@@ -245,16 +282,35 @@ export default function LiveOperations() {
         <div className={styles.opsBottom}>
           <article className={styles.opsPanel}>
             <div className={styles.opsHead}><div><h2>Cycle Time Analysis</h2><p>Excavator idle time across the last 24 hours</p></div><button className={styles.opsFilter}>LAST 24 HRS ▾</button></div>
-            <div className={styles.cycleChart}>
-              <svg viewBox="0 0 850 180" preserveAspectRatio="none">
-                <g stroke="#4a5358" strokeWidth="1">
-                  <line x1="0" y1="20" x2="850" y2="20" /><line x1="0" y1="60" x2="850" y2="60" /><line x1="0" y1="100" x2="850" y2="100" /><line x1="0" y1="140" x2="850" y2="140" />
-                </g>
-                <polyline points="0,105 45,76 90,112 135,89 180,115 225,94 270,120 315,109 360,82 405,115 450,59 495,105 540,93 585,116 630,83 675,110 720,120 765,95 810,111 850,97" fill="none" stroke="#16aeda" strokeWidth="3" />
-                <polyline points="0,86 45,97 90,75 135,88 180,68 225,105 270,92 315,116 360,78 405,128 450,92 495,107 540,78 585,111 630,96 675,87 720,116 765,72 810,101 850,84" fill="none" stroke="#d749bf" strokeWidth="3" />
-                <polyline points="0,119 45,124 90,103 135,112 180,122 225,112 270,117 315,104 360,118 405,106 450,113 495,110 540,119 585,113 630,126 675,116 720,122 765,115 810,120 850,112" fill="none" stroke="#6bc496" strokeWidth="3" />
-                <text x="1" y="171" fill="#a7b4bb" fontSize="9" fontFamily="monospace">01AM</text><text x="190" y="171" fill="#a7b4bb" fontSize="9" fontFamily="monospace">06AM</text><text x="395" y="171" fill="#a7b4bb" fontSize="9" fontFamily="monospace">12PM</text><text x="603" y="171" fill="#a7b4bb" fontSize="9" fontFamily="monospace">06PM</text><text x="805" y="171" fill="#a7b4bb" fontSize="9" fontFamily="monospace">12AM</text>
-              </svg>
+            <div className={styles.cycleChart} style={{ height: '180px' }}>
+              <ResponsiveContainer width="100%" height="100%">
+                <LineChart data={[
+                  { time: '01AM', EX002: 5.5, EX004: 4.8, EX003: 6.2 },
+                  { time: '03AM', EX002: 6.1, EX004: 5.0, EX003: 6.0 },
+                  { time: '05AM', EX002: 5.3, EX004: 5.5, EX003: 6.4 },
+                  { time: '07AM', EX002: 5.8, EX004: 5.2, EX003: 6.1 },
+                  { time: '09AM', EX002: 5.1, EX004: 5.8, EX003: 5.9 },
+                  { time: '11AM', EX002: 5.6, EX004: 4.5, EX003: 6.0 },
+                  { time: '01PM', EX002: 5.0, EX004: 4.9, EX003: 5.8 },
+                  { time: '03PM', EX002: 5.2, EX004: 4.3, EX003: 6.3 },
+                  { time: '05PM', EX002: 5.8, EX004: 5.0, EX003: 5.7 },
+                  { time: '07PM', EX002: 5.1, EX004: 4.1, EX003: 6.0 },
+                  { time: '09PM', EX002: 6.5, EX004: 4.7, EX003: 5.8 },
+                  { time: '11PM', EX002: 5.2, EX004: 4.4, EX003: 5.9 },
+                  { time: '12AM', EX002: 5.4, EX004: 5.0, EX003: 5.7 }
+                ]} margin={{ top: 20, right: 10, left: -20, bottom: 0 }}>
+                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#4a5358" />
+                  <XAxis dataKey="time" axisLine={false} tickLine={false} tick={{ fontSize: 9, fill: '#a7b4bb', fontFamily: 'monospace' }} dy={10} />
+                  <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 9, fill: '#a7b4bb', fontFamily: 'monospace' }} domain={[3, 8]} />
+                  <Tooltip 
+                    contentStyle={{ borderRadius: '6px', border: '1px solid #4a5358', backgroundColor: '#182b3a', color: '#dce8f2' }} 
+                    itemStyle={{ fontWeight: 600 }}
+                  />
+                  <Line type="monotone" dataKey="EX002" stroke="#16aeda" strokeWidth={3} dot={false} activeDot={{ r: 4 }} />
+                  <Line type="monotone" dataKey="EX004" stroke="#d749bf" strokeWidth={3} dot={false} activeDot={{ r: 4 }} />
+                  <Line type="monotone" dataKey="EX003" stroke="#6bc496" strokeWidth={3} dot={false} activeDot={{ r: 4 }} />
+                </LineChart>
+              </ResponsiveContainer>
             </div>
           </article>
           <article className={styles.opsPanel}>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { ComposedChart, Area, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import styles from './Simulator.module.css';
 
 export default function Simulator() {
@@ -78,23 +79,28 @@ export default function Simulator() {
             </span>
           </div>
           
-          <div className="chart" style={{ marginLeft: 0, marginRight: 0 }}>
-            <svg viewBox="0 0 700 240" preserveAspectRatio="none">
-              <g stroke="#dce5ee">
-                <line x1="0" y1="40" x2="700" y2="40" />
-                <line x1="0" y1="90" x2="700" y2="90" />
-                <line x1="0" y1="140" x2="700" y2="140" />
-                <line x1="0" y1="190" x2="700" y2="190" />
-              </g>
-              <path d="M0 190 L100 170 L200 145 L300 138 L400 104 L500 84 L600 57 L700 48 L700 240 L0 240Z" fill="#0a9b7018" />
-              <polyline points="0,190 100,170 200,145 300,138 400,104 500,84 600,57 700,48" fill="none" stroke="#0a9b70" strokeWidth="3" />
-              <polyline points="0,198 100,184 200,171 300,164 400,154 500,144 600,135 700,124" fill="none" stroke="#db3d3d" strokeWidth="2" strokeDasharray="6 4" />
-              <text x="612" y="42" fill="#0a9b70" fontSize="11" fontFamily="monospace">Recovery case</text>
-              <text x="602" y="118" fill="#db3d3d" fontSize="11" fontFamily="monospace">Baseline</text>
-            </svg>
-            <div className="chart-labels">
-              <span>Today</span><span>Week 1</span><span>Week 2</span><span>Week 3</span><span>Month end</span>
-            </div>
+          <div className="chart" style={{ marginLeft: 0, marginRight: 0, height: '240px' }}>
+            <ResponsiveContainer width="100%" height="100%">
+              <ComposedChart data={[
+                { period: 'Today', baseline: 10000, recovery: 10000 },
+                { period: 'Week 1', baseline: 40000, recovery: 40000 + (metrics.output - 128500) * 0.2 },
+                { period: 'Week 2', baseline: 70000, recovery: 70000 + (metrics.output - 128500) * 0.5 },
+                { period: 'Week 3', baseline: 100000, recovery: 100000 + (metrics.output - 128500) * 0.8 },
+                { period: 'Month end', baseline: 128500, recovery: metrics.output }
+              ]} margin={{ top: 20, right: 20, left: 20, bottom: 0 }}>
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#dce5ee" />
+                <XAxis dataKey="period" axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: '#64748b' }} dy={10} />
+                <YAxis hide domain={['dataMin - 10000', 'dataMax + 10000']} />
+                <Tooltip 
+                  contentStyle={{ borderRadius: '6px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }} 
+                  labelStyle={{ fontWeight: 600, color: '#334155', marginBottom: '4px' }}
+                  formatter={(value) => value.toLocaleString() + ' t'}
+                />
+                <Area type="monotone" dataKey="recovery" name="Recovery case" fill="#0a9b7018" stroke="none" />
+                <Line type="monotone" dataKey="recovery" name="Recovery case" stroke="#0a9b70" strokeWidth={3} dot={{ r: 4, fill: '#0a9b70' }} />
+                <Line type="monotone" dataKey="baseline" name="Baseline" stroke="#db3d3d" strokeWidth={2} strokeDasharray="6 4" dot={{ r: 3, fill: '#db3d3d' }} />
+              </ComposedChart>
+            </ResponsiveContainer>
           </div>
           
           <div className="metrics" style={{ margin: 0 }}>

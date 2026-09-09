@@ -1,8 +1,9 @@
 import React from 'react';
-import useLiveSimulation from '../hooks/useLiveSimulation';
+import { ComposedChart, Area, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { useStore } from '../store/useStore';
 
 export default function CommandCenter() {
-  const { throughput } = useLiveSimulation();
+  const { throughput } = useStore();
   const totalThroughput = Object.values(throughput).reduce((a, b) => a + b, 0);
   const throughputChange = (totalThroughput / 2870 * 100 - 100).toFixed(1);
   const todayOre = Math.floor(42680 + (throughputChange * 120));
@@ -79,23 +80,29 @@ export default function CommandCenter() {
               <span className="forecast">Forecast</span>
             </div>
           </div>
-          <div className="chart">
-            <svg viewBox="0 0 700 240" preserveAspectRatio="none">
-              <g stroke="#dce5ee" strokeWidth="1">
-                <line x1="0" y1="35" x2="700" y2="35" />
-                <line x1="0" y1="85" x2="700" y2="85" />
-                <line x1="0" y1="135" x2="700" y2="135" />
-                <line x1="0" y1="185" x2="700" y2="185" />
-              </g>
-              <path d="M0 183 L55 162 L110 173 L165 130 L220 144 L275 104 L330 117 L385 92 L440 111 L495 69 L550 80 L605 57 L660 49 L700 35 L700 240 L0 240Z" fill="#087bb81a" />
-              <polyline points="0,183 55,162 110,173 165,130 220,144 275,104 330,117 385,92 440,111 495,69 550,80 605,57 660,49" fill="none" stroke="#087bb8" strokeWidth="3" />
-              <polyline points="660,49 700,35" fill="none" stroke="#b45309" strokeWidth="3" strokeDasharray="6 4" />
-              <circle cx="660" cy="49" r="4" fill="#087bb8" />
-              <text x="610" y="35" fill="#087bb8" fontSize="11" fontFamily="monospace">42.7k</text>
-            </svg>
-            <div className="chart-labels">
-              <span>01 Sep</span><span>05</span><span>10</span><span>15</span><span>20</span><span>Today</span>
-            </div>
+          <div className="chart" style={{ height: '240px' }}>
+            <ResponsiveContainer width="100%" height="100%">
+              <ComposedChart data={[
+                { day: '01 Sep', actual: 31000 },
+                { day: '05', actual: 34500 },
+                { day: '10', actual: 33000 },
+                { day: '15', actual: 38000 },
+                { day: '20', actual: 39500 },
+                { day: 'Today', actual: 42700, forecast: 42700 },
+                { day: 'End', forecast: 45000 }
+              ]} margin={{ top: 20, right: 30, left: 0, bottom: 0 }}>
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#dce5ee" />
+                <XAxis dataKey="day" axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: '#64748b' }} dy={10} />
+                <YAxis hide domain={['dataMin - 5000', 'dataMax + 5000']} />
+                <Tooltip 
+                  contentStyle={{ borderRadius: '6px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }} 
+                  labelStyle={{ fontWeight: 600, color: '#334155', marginBottom: '4px' }}
+                />
+                <Area type="monotone" dataKey="actual" fill="#087bb81a" stroke="none" />
+                <Line type="monotone" dataKey="actual" stroke="#087bb8" strokeWidth={3} dot={{ r: 4, fill: '#087bb8' }} />
+                <Line type="monotone" dataKey="forecast" stroke="#b45309" strokeWidth={3} strokeDasharray="6 4" dot={false} />
+              </ComposedChart>
+            </ResponsiveContainer>
           </div>
         </article>
 
